@@ -25,6 +25,16 @@ namespace DemoTest.Views.Pages
             InitializeComponent();
             services = new ObservableCollection<Service>(BaseClass.db.Service.ToList());
             this.DataContext = this;
+            Clicked();
+        }
+
+        void Clicked()
+        {
+
+            //TextBlock textBlock = new TextBlock(new Run("This text will render"));
+            //textBlock.TextDecorations = TextDecorations.Strikethrough;
+
+            TxbCost.TextDecorations = TextDecorations.Strikethrough;
         }
     }
 }
