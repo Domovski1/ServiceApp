@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DemoTest.Base;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +17,14 @@ using System.Windows.Shapes;
 
 namespace DemoTest.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ServiceListPage.xaml
-    /// </summary>
     public partial class ServiceListPage : Page
     {
+        public ObservableCollection<Service> services { get; set; }
         public ServiceListPage()
         {
             InitializeComponent();
+            services = new ObservableCollection<Service>(BaseClass.db.Service.ToList());
+            this.DataContext = this;
         }
     }
 }

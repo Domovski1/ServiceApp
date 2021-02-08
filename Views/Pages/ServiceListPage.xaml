@@ -10,10 +10,25 @@
       Title="Список услуг">
 
     <Grid>
-        <ListView>
+        <ListView
+            ItemsSource="{Binding services}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <Image
+                            Width="100"
+                            Height="100"
+                            Source="{Binding MainImagePath}"/>
+                        <StackPanel
+                            Margin="10">
+                            <TextBlock Text="{Binding Title}"/>
+                            <TextBlock Text="{Binding Cost}"/>
+                            <TextBlock Text="{Binding DurationInSeconds}"/>
+                            <TextBlock Text="{Binding Discount}"/>
+                            <TextBlock/>
+                        </StackPanel>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
