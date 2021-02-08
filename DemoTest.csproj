@@ -113,6 +113,7 @@
     <Compile Include="Base\Tag.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\TimeConverter.cs" />
     <Compile Include="Views\Pages\ServiceListPage.xaml.cs">
       <DependentUpon>ServiceListPage.xaml</DependentUpon>
     </Compile>
@@ -167,9 +168,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Base\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
