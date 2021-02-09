@@ -11,18 +11,102 @@
 
     <Page.Resources>
         <Style TargetType="TextBox">
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="Width" Value="240"/>
             <Setter Property="Margin" Value="0 5"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0 5"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="30"/>
         </Style>
     </Page.Resources>
 
     <Grid>
+
+        <!--Разделение страницы на слобцы и строки-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+        <!--Label for ID-->
+        <Label
+            Name="LblId"
+            FontSize="20"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            Grid.Column="1"
+            Grid.Row="1"
+            Margin="10"/>
+
+        <!--Button back-->
+        <Button
+            Style="{StaticResource BtnBack}"
+            Click="BtnBack_Click"/>
+        
+        <!--Левая панель-->
         <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
             VerticalAlignment="Center">
-            <TextBox Text="{Binding Title}"/>
-            <TextBox Text="{Binding Cost}"/>
-            <TextBox Text="{Binding Description}"/>
-            
+            <StackPanel>
+                <TextBlock Text="Название"/>
+                <TextBlock Text="Цена"/>
+                <TextBlock Text="Описание"/>
+                <TextBlock Text="Скидка"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBox Text="{Binding service.Title}"/>
+                <TextBox Text="{Binding service.Cost}"/>
+                <TextBox Text="{Binding service.Description}"/>
+                <TextBox Text="{Binding service.Discount}"/>
+            </StackPanel>
         </StackPanel>
+
+        
+        <!--Правая панель-->
+        <StackPanel
+            VerticalAlignment="Center"
+            Grid.Column="1"
+            Grid.Row="1">
+            
+            <!--Изображение-->
+            <StackPanel>
+                <Image
+                    Width="150"
+                    Height="150"
+                    Name="ImgBox"
+                    Source="{Binding service.MainImagePath}"/>
+                
+                <Button
+                    Width="150"
+                    Height="26"
+                    Margin="0 5"
+                    Content="Выбрать"
+                    Click="BtnChoose_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Кнопка сохранения -->
+        <Button
+            Grid.Column="0"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Height="26"
+            Width="300"
+            Content="Сохранить"
+            Click="BtnSave_Click"/>
     </Grid>
 </Page>

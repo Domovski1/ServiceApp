@@ -25,6 +25,7 @@ namespace DemoTest
         {
             InitializeComponent();
             MainFrame.Navigate(new ServiceListPage());
+            //MainFrame.Navigate(new ServicePafe(new Base.Service()));
         }
     }
 }
