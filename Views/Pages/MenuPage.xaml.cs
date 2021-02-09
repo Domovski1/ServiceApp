@@ -23,7 +23,7 @@ namespace DemoTest.Views.Pages
 
         private void BtnToService_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ServicePafe(new Base.Service));
+            NavigationService.Navigate(new ServicePafe(new Base.Service()));
         }
     }
 }
