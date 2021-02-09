@@ -9,13 +9,17 @@
       d:DesignWidth="800"
       Title="Сервис">
 
+    <!--Page Resources-->
     <Page.Resources>
+        <!--Стиль для Текстбоксов-->
         <Style TargetType="TextBox">
             <Setter Property="Width" Value="240"/>
             <Setter Property="Margin" Value="0 5"/>
             <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
+        <!--Стиль для Текстблоков-->
         <Style TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
@@ -74,6 +78,7 @@
                          PreviewTextInput="TextBox_PreviewTextInput"/>
                 <TextBox Text="{Binding service.DurationInSeconds}"
                          x:Name="TxbTime"
+                         TextChanged="TxbTime_TextChanged"
                          PreviewTextInput="TextBox_PreviewTextInput"/>
                 <TextBox Text="{Binding service.Description}"/>
                 <TextBox Text="{Binding service.Discount}"/>

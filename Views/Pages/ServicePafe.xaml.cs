@@ -1,28 +1,26 @@
 ﻿using DemoTest.Base;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace DemoTest.Views.Pages
 {
+    // Проблема с добавлением изображения
     /// <summary>
     /// Логика взаимодействия для ServicePafe.xaml
     /// </summary>
     public partial class ServicePafe : Page
     {
         public Service service { get; set; }
+        public OpenFileDialog file = new OpenFileDialog();
+        public string PathToImage;
+
         public ServicePafe(Service GetService)
         {
             InitializeComponent();
@@ -52,13 +50,14 @@ namespace DemoTest.Views.Pages
         /// <param name="e"></param>
         private void BtnChoose_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
             file.Filter = "(*.jpg); (*.png) | *.jpg; *.png";
 
             if (file.ShowDialog() == true)
             {
                 ImgBox.Source = new BitmapImage(new Uri(file.FileName));
             }
+
+            PathToImage = file.FileName;
         }
 
         void ShowServiceID()
@@ -77,6 +76,7 @@ namespace DemoTest.Views.Pages
                 if (service.ID == 0)
                 {
                     if (ServiceExist != null) MessageBox.Show("Такой сервис существует!");
+                    service.MainImagePath = PathToImage;
                     BaseClass.db.Service.Add(service);
                     BaseClass.db.SaveChanges();
                     MessageBox.Show("Операция выполнена", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -93,18 +93,27 @@ namespace DemoTest.Views.Pages
             }
         }
 
-        void CheckData()
-        {
-            int TimeLimit = int.Parse(TxbTime.Text);
-            if (TimeLimit > 14400)
-            {
-                BtnSave.IsEnabled = false;
-            }
-        }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = "0123456789.".IndexOf(e.Text) < 0;
+        }
+
+        private void TxbTime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (TxbTime.Text != "")
+                {
+                    int TimeLimit = int.Parse(TxbTime.Text);
+                    if (TimeLimit > 14400) BtnSave.IsEnabled = false;
+                    else BtnSave.IsEnabled = true;
+                }
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Упс, что-то пошло не так", MessageBoxButton.OK, MessageBoxImage.Error) ;
+            }
         }
     }
 }
