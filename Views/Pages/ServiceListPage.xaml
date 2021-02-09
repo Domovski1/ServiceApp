@@ -19,23 +19,47 @@
 
     <Grid>
 
+        <!--Разделение окна-->
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.9*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock
-            x:Name="TxbCost"
-            Grid.Row="0"
-            FontSize="17"
+
+        <StackPanel
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Text="Давно тебя не видел"/>
+            Orientation="Horizontal">
+            
+            <TextBlock
+                x:Name="TxbCost"
+                Grid.Row="0"
+                FontSize="17"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Text="Давно тебя не видел"/>
+            
+            <ComboBox
+                Width="180"
+                Height="26"
+                SelectionChanged="CmbSearch_SelectionChanged"
+                x:Name="CmbSearch">
+                <ComboBoxItem Content="По убыванию"/>
+                <ComboBoxItem Content="По возрастанию"/>
+                <ComboBoxItem Content="Скидка 0-5%"/>
+                <ComboBoxItem Content="Скидка 5-15%"/>
+                <ComboBoxItem Content="Скидка 15-30%"/>
+                <ComboBoxItem Content="Скидка 30-70%"/>
+                <ComboBoxItem Content="Скидка 70-100%"/>
+            </ComboBox>
+        
+        </StackPanel>
 
         <!--Вывод данных-->
         <ListView
             Grid.Row="1"
-            ItemsSource="{Binding services}">
+            x:Name="LWService"
+            ItemsSource="{Binding services}"
+            >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel
