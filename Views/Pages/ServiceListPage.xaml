@@ -58,6 +58,7 @@
         <ListView
             Grid.Row="1"
             x:Name="LWService"
+            MouseDoubleClick="LWService_MouseDoubleClick"
             ItemsSource="{Binding services}"
             >
             <ListView.ItemTemplate>

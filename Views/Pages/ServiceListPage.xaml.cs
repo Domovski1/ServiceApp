@@ -74,19 +74,11 @@ namespace DemoTest.Views.Pages
                     break;
             }
 
-            //if (CmbSearch.Text == "По убыванию")
-            //{
-            //    //LWService.ItemsSource = BaseClass.db.Service.OrderByDescending(x => x.Cost).ToString();
-            //    services = new ObservableCollection<Service>(BaseClass.db.Service.OrderByDescending(x => x.Cost));
-            //    this.DataContext = null;
-            //    this.DataContext = this;
-            //} else if (CmbSearch.Text == "По возрастанию")
-            //{
-            //    //LWService.ItemsSource = BaseClass.db.Service.OrderBy(x => x.Cost).ToString();
-            //    services = new ObservableCollection<Service>(BaseClass.db.Service.OrderBy(x => x.Cost));
-            //    this.DataContext = null;
-            //    this.DataContext = this;
-            //}
+        }
+
+        private void LWService_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new ServicePafe((Service)LWService.SelectedItem));
         }
     }
 }
