@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"
         xmlns:local="clr-namespace:DemoTest"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="{Binding Path=Content.Title, ElementName=MainFrame}"
         Height="450" 
         Width="800">
     
