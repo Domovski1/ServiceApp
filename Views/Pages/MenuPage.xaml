@@ -1,0 +1,31 @@
+﻿<Page x:Class="DemoTest.Views.Pages.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DemoTest.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="Главное меню">
+
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+    </Page.Resources>
+    
+    
+    <Grid>
+        <StackPanel
+            VerticalAlignment="Center">
+            <Button Content="Посмотреть список сервисов"
+                    Click="BtnToList_Click"/>
+            <Button Content="Добавить новый сервис"
+                    Click="BtnToService_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
