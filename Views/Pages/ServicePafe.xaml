@@ -39,12 +39,12 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <!--Label for ID-->
+        <!--Вывод ID-->
         <Label
             Name="LblId"
             FontSize="20"
             VerticalAlignment="Top"
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Grid.Column="1"
             Grid.Row="1"
             Margin="10"/>
@@ -62,13 +62,19 @@
             <StackPanel>
                 <TextBlock Text="Название"/>
                 <TextBlock Text="Цена"/>
+                <TextBlock Text="Время (сек)"/>
                 <TextBlock Text="Описание"/>
                 <TextBlock Text="Скидка"/>
             </StackPanel>
 
             <StackPanel>
-                <TextBox Text="{Binding service.Title}"/>
-                <TextBox Text="{Binding service.Cost}"/>
+                <TextBox Text="{Binding service.Title}"
+                         Name="TxbTitle"/>
+                <TextBox Text="{Binding service.Cost}"
+                         PreviewTextInput="TextBox_PreviewTextInput"/>
+                <TextBox Text="{Binding service.DurationInSeconds}"
+                         x:Name="TxbTime"
+                         PreviewTextInput="TextBox_PreviewTextInput"/>
                 <TextBox Text="{Binding service.Description}"/>
                 <TextBox Text="{Binding service.Discount}"/>
             </StackPanel>
@@ -106,6 +112,7 @@
             HorizontalAlignment="Center"
             Height="26"
             Width="300"
+            Name="BtnSave"
             Content="Сохранить"
             Click="BtnSave_Click"/>
     </Grid>
