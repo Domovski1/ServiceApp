@@ -19,7 +19,6 @@ namespace DemoTest.Views.Pages
     {
         public Service service { get; set; }
         public OpenFileDialog file = new OpenFileDialog();
-        public string PathToImage;
 
         public ServicePafe(Service GetService)
         {
@@ -57,31 +56,40 @@ namespace DemoTest.Views.Pages
                 ImgBox.Source = new BitmapImage(new Uri(file.FileName));
             }
 
-            PathToImage = file.FileName;
         }
 
+        /// <summary>
+        /// показ ID если идёт редактирование
+        /// </summary>
         void ShowServiceID()
         {
             if (service.ID != 0) LblId.Content = $"ID: {service.ID}";
             else LblId.Content = "Новый сервис";
         }
 
+
+        /// <summary>
+        /// Логика для сохранения данных
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSave_Click(object sender, RoutedEventArgs e) 
         {
             try
             {
                 var ServiceExist = BaseClass.db.Service.FirstOrDefault(s => s.Title == TxbTitle.Text);
 
-
+                // Если это новый сервис
                 if (service.ID == 0)
                 {
                     if (ServiceExist != null) MessageBox.Show("Такой сервис существует!");
-                    service.MainImagePath = PathToImage;
+                    service.MainImagePath = ImgBox.Source.ToString();
                     BaseClass.db.Service.Add(service);
                     BaseClass.db.SaveChanges();
                     MessageBox.Show("Операция выполнена", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 } else
                 {
+                    service.MainImagePath = ImgBox.Source.ToString();
                     BaseClass.db.SaveChanges();
                     MessageBox.Show("Операция выполнена", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -94,11 +102,23 @@ namespace DemoTest.Views.Pages
         }
 
 
+        #region Ограничения
+
+        /// <summary>
+        /// Ограничение на ввод только цифр и точки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = "0123456789.".IndexOf(e.Text) < 0;
         }
 
+        /// <summary>
+        /// Ограничение на время (4 часа)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TxbTime_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -116,4 +136,6 @@ namespace DemoTest.Views.Pages
             }
         }
     }
+
+    #endregion
 }
