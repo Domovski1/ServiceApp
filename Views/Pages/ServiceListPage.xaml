@@ -51,7 +51,11 @@
                 <ComboBoxItem Content="Скидка 30-70%"/>
                 <ComboBoxItem Content="Скидка 70-100%"/>
             </ComboBox>
-        
+
+
+            <TextBlock
+                Text="{Binding CountService}"
+                x:Name="TxbCount"/>
         </StackPanel>
 
         <!--Вывод данных-->

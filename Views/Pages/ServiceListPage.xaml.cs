@@ -20,10 +20,13 @@ namespace DemoTest.Views.Pages
     public partial class ServiceListPage : Page
     {
         public ObservableCollection<Service> services { get; set; }
+        public string CountService { get; set; }
+
         public ServiceListPage()
         {
             InitializeComponent();
             services = new ObservableCollection<Service>(BaseClass.db.Service.ToList());
+            CountService = BaseClass.db.Service.Count().ToString();
             this.DataContext = this;
             Clicked();
         }
