@@ -53,9 +53,17 @@
             </ComboBox>
 
 
-            <TextBlock
-                Text="{Binding CountService}"
-                x:Name="TxbCount"/>
+            <StackPanel>
+
+                <Button
+                    Height="26"
+                    Width="150"
+                    Margin="30 10 0 0"
+                    Click="BtnDelete_Click"/>
+                <TextBlock
+                    Text="{Binding CountService}"
+                    x:Name="TxbCount"/>
+            </StackPanel>
         </StackPanel>
 
         <!--Вывод данных-->

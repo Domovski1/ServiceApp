@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,10 @@ using System.Windows.Shapes;
 
 namespace DemoTest.Views.Pages
 {
-    public partial class ServiceListPage : Page
+    public partial class ServiceListPage : Page, INotifyPropertyChanged
     {
         public ObservableCollection<Service> services { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
         public string CountService { get; set; }
 
         public ServiceListPage()
@@ -30,6 +32,7 @@ namespace DemoTest.Views.Pages
             this.DataContext = this;
             Clicked();
         }
+
 
         void Clicked()
         {
@@ -81,7 +84,34 @@ namespace DemoTest.Views.Pages
 
         private void LWService_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(new ServicePafe((Service)LWService.SelectedItem));
+            //NavigationService.Navigate(new ServicePafe((Service)LWService.SelectedItem));
+            NavigationService.Navigate(new ServiceImagePage((Service)LWService.SelectedItem));
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+            Service NewService = new Service()
+            {
+                Title = "New Item",
+                Cost = 1330,
+                DurationInSeconds = 13300,
+                Discount = 16
+            };
+            BaseClass.db.Service.Add(NewService);
+            BaseClass.db.SaveChanges();
+            MessageBox.Show("Added new service", "Done");
+
+            //try
+            //{
+            //    BaseClass.db.Service.Remove((Service)LWService.SelectedItem);
+            //    //BaseClass.db.SaveChanges();
+            //    MessageBox.Show("Удалено");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString(), "Exception");
+            //}
         }
     }
 }
